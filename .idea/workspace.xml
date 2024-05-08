@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfdade10-ecf1-42ca-9eb1-41f62812fc5a" name="更改" comment="">
+    <list default="true" id="cfdade10-ecf1-42ca-9eb1-41f62812fc5a" name="更改" comment="毕业设计">
       <change afterPath="$PROJECT_DIR$/.idea/Fruit_recognition.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
@@ -198,8 +198,17 @@
       <workItem from="1714806699492" duration="1826000" />
       <workItem from="1714861664339" duration="14957000" />
       <workItem from="1715135645335" duration="20873000" />
-      <workItem from="1715171332616" duration="1242000" />
+      <workItem from="1715171332616" duration="1680000" />
     </task>
+    <task id="LOCAL-00001" summary="毕业设计">
+      <option name="closed" value="true" />
+      <created>1715173152937</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715173152937</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +244,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="毕业设计" />
+    <option name="LAST_COMMIT_MESSAGE" value="毕业设计" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fruit_recognition$__init__.coverage" NAME="__init__ 覆盖结果" MODIFIED="1712721593587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/eval" />
