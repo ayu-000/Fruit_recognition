@@ -17,7 +17,11 @@ from util.schemas import ImageData
 # 设置保存图片的目录
 UPLOAD_FOLDER = 'static/image'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-infer_path = './output_dir_pretrained/modelA--No_features_best.pth'
+infer_path = ['./output_dir_pretrained/modelA.pth',
+              './output_dir_pretrained/modelA_Augmentation.pth',
+              './output_dir_pretrained/modelB.pth',
+              './output_dir_pretrained/modelB_Augmentation.pth'
+              ]
 evl = APIRouter()
 
 
@@ -47,7 +51,8 @@ def infer_image(image_data, model, image_path):
             "image_url": image_path,
             "result": f'准确率: {accuracy}%',
             "result_type": predicted_class,
-            "device": image_data.device
+            "device": image_data.device,
+            "algorithm_used": image_data.algorithm_used
         }
     else:
         return {"code": 400, "message": "Error: Unable to load the image."}
@@ -66,13 +71,23 @@ def evl_img(image_data: ImageData, db: Session = Depends(get_db())):
     image_bytes = base64.b64decode(base64_data)
     # 生成图片文件名
     filename = f'img+{len(os.listdir(UPLOAD_FOLDER)) + 1}.jpg'
-    file_path = UPLOAD_FOLDER+'/'+filename
+    file_path = UPLOAD_FOLDER + '/' + filename
     # 将图片数据保存到文件
     with open(file_path, 'wb') as f:
         f.write(image_bytes)
 
     model = timm.create_model('resnet50', pretrained=False, num_classes=15)
-    checkpoint = torch.load(infer_path, map_location=torch.device('cpu'))
+    if image_data.algorithm_used == 'ModelA':
+        model_path = infer_path[0]
+    else:
+        if image_data.algorithm_used == 'ModelA_Augmentation':
+            model_path = infer_path[1]
+        else:
+            if image_data.algorithm_used == 'ModelB':
+                model_path = infer_path[2]
+            else:
+                model_path = infer_path[3]
+    checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
     model.load_state_dict(checkpoint.state_dict())
     model.eval()
 
@@ -88,6 +103,7 @@ def evl_save_history(res, db: Session):
                                     image_url=res["image_url"],
                                     result_type=res["result_type"],
                                     result=res["result"],
-                                    device=res["device"])
+                                    device=res["device"],
+                                    algorithm_used=res["algorithm_used"])
     new_history = crud.create_his(db=db, his=history)
     print("新增历史记录")

@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,6 +26,8 @@ app.include_router(history,prefix='/history',tags=['历史记录模块'])
 @app.get("/")
 async def root():
     return {"message": "100 World"}
+# if __name__ =='__main__':
+#     uvicorn.run('main:app')
 
 #
 # @app.get("/hello/{name}")

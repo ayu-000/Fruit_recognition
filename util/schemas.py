@@ -52,3 +52,4 @@ class ImageData(BaseModel):
     base64_data: str
     user_id: int
     device: str
+    algorithm_used: str
